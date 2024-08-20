@@ -3,10 +3,12 @@
 
 #include <QString>
 
+class Recorder; // Declaração antecipada
+
 class Camera {
 public:
     Camera(const QString &nome, const QString &login, const QString &senha, int canal,
-           const QString &ip, const QString &streaming, const QString &protocol, int record_id);
+           const QString &ip, const QString &streaming, const QString &protocol, int recorder_id);
 
     QString getNome() const;
     QString getLogin() const;
@@ -15,7 +17,10 @@ public:
     QString getIp() const;
     QString getStreaming() const;
     QString getProtocol() const;
-    int getRecordId() const;
+    int getRecorderId() const;
+
+    void setRecorder(Recorder *recorder);
+    Recorder* getRecorder() const;
 
 private:
     QString nome;
@@ -25,7 +30,8 @@ private:
     QString ip;
     QString streaming;
     QString protocol;
-    int record_id;
+    int recorder_id;
+    Recorder *recorder;
 };
 
 #endif // CAMERA_H

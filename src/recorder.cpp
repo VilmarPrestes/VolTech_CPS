@@ -1,14 +1,16 @@
 #include "recorder.h"
 
-Recorder::Recorder(const QString &nome, const QString &login, const QString &senha, int canal,
-                   const QString &ip, const QString &streaming, const QString &protocol)
-    : nome(nome), login(login), senha(senha), canal(canal), ip(ip), streaming(streaming),
-    protocol(protocol) {}
+Recorder::Recorder(int id, const QString &nome)
+    : id(id), nome(nome) {}
 
-void Recorder::addCamera(const Camera &camera) {
+int Recorder::getId() const { return id; }
+QString Recorder::getNome() const { return nome; }
+
+void Recorder::addCamera(Camera *camera) {
     cameras.append(camera);
+    camera->setRecorder(this);
 }
 
-QList<Camera> Recorder::getCameras() const {
+QList<Camera*> Recorder::getCameras() const {
     return cameras;
 }
